@@ -9,7 +9,7 @@ package lby.com.dp;
 *   思路2:动态规划法 完全背包问题
 *       1.确定dp数组及其下标含义: dp[j]表示硬币和=j的组合数量
 *       2.确定状态转移方程: dp[j]=dp[j]+dp[j-coins[i]]
-*       3.确定dp数组如何初始化: 拿coins[0]去填充dp[j], dp[0]=1 ,且当j%coin[0]==0时dp[j]=1
+*       3.确定dp数组如何初始化: 拿coins[0]去填充dp[j], dp[0]=1 因为钱币总和=0就一种方法即什么都不拿
 *       4.确定dp数组遍历顺序: coins正序/逆序皆可, dp正序!
 *       5.小规模问题的手算与算法一致性检验:
 *
@@ -41,11 +41,7 @@ public class Question518 {
             return 1;
         int[] dp = new int[amount+1];
         dp[0] = 1;
-        for (int i = 1; i < dp.length; i++) {
-            if (i % coins[0] == 0)
-                dp[i] = 1;
-        }
-        for (int i = 1; i < coins.length; i++) {
+        for (int i = 0; i < coins.length; i++) {
             for (int j = coins[i]; j < dp.length; j++) {
                 dp[j] = dp[j] + dp[j - coins[i]];
             }
