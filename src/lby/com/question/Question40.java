@@ -1,7 +1,12 @@
 package lby.com.question;
 
 import java.util.*;
-
+/*
+* 早期的野路子:
+*   将这个问题向39问题转化, 将candidates过滤成无重复元素的hashMapKey, 同时记录一个hashMap, 记录hashMapKey中每个元素的个数(>=1)
+*   回溯的策略: 对于元素e, 捕捉 与 跳过两种可能, 对于捕捉e, 则要遍历e的每一种重复次数, 跳过e则直接到下一元素
+*   整体来说也还行, 虽然空间上多耗了一点, 但思路上基本是回溯+剪枝的思想了, 正规路子看bt包下的Question40
+* */
 public class Question40 {
     static List<List<Integer>> result = new ArrayList<>();
     static List<Integer> hashMapKey = new ArrayList<>();
@@ -46,7 +51,7 @@ public class Question40 {
                             c.add(element);
                         }
                         dfx(target-res, index+1, c);
-                    }
+                    } else break;
                 }
             }
         }
