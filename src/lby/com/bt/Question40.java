@@ -50,21 +50,14 @@ public class Question40 {
             int cur = candidates[i];
             if (cur > des)
                 break;
-            //找到本元素重复元素的最后一个元素的下标
-            int j = i;
-            boolean isSeem = false;
-            while (j+1 < candidates.length){
-                if (candidates[j+1] == cur){
-                    isSeem = true;
-                    j++;
-                } else break;
-            }
             list.add(cur);
             backTracking(candidates, lists, i+1, des-cur, list);
             list.remove(list.size() - 1);
-            //跳到本元素重复元素的最后一个(因为for中还有i++, 因此此处不能跳到j+1)
-            if (isSeem)
-                i = j;
+            //跳到本元素重复元素的最后一个(然后利用for中的i++跳到下一个不重复元素)
+            while (i < candidates.length - 1){
+                if (candidates[i] == candidates[i+1]) i++;
+                else break;
+            }
         }
     }
 }
