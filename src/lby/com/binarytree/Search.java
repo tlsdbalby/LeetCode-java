@@ -107,7 +107,7 @@ public class Search {
         }
     }
     /*
-    * 广度优先搜索回溯法(递归): 使用集合来保存每层元素
+    * 广度优先搜索回溯法(递归): 使用数组来保存每层元素，约等于用组数模拟队列（将队列按树的层次划分为多个数组）
     * */
     public static void bfs(TreeNode root){
         if (root == null)
